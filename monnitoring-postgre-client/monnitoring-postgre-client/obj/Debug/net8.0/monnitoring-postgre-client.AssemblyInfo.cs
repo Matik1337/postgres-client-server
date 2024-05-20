@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("monnitoring-postgre-client")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+54ad04e39c63dde251f86d0085b0461aca0d11c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("monnitoring-postgre-client")]
 [assembly: System.Reflection.AssemblyTitleAttribute("monnitoring-postgre-client")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

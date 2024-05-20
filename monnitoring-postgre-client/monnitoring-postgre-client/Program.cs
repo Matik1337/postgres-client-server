@@ -21,18 +21,18 @@ namespace monnitoring_postgre_client
             try
             {
                 //получение таблици работников
-                DataTable employee = SendWithCallback(GetEmployeeTable());
+                DataTable employee = SendWithCallback(GetLoaderShiftTable());
                 //получение id последнего работника
                 PrintDataTable(employee);
                 int lastID = GetLastID(employee);
                 //добавление нового работника
-                Send(AddEmployee(lastID + 1, "firstname", "lastname"));
+                Send(AddLoader(lastID + 1, "firstname"));
                 //получение и вывод измененной таблицы
-                PrintDataTable(SendWithCallback(GetEmployeeTable()));
+                PrintDataTable(SendWithCallback(GetLoaderTable()));
                 //удаление работника, которого только что добавили
-                Send(DeleteEmployee(lastID + 1));
+                Send(DeleteLoader(lastID + 1));
                 //получение и вывод измененной таблицы
-                PrintDataTable(SendWithCallback(GetEmployeeTable()));
+                PrintDataTable(SendWithCallback(GetLoaderTable()));
 
             }
             catch (Exception e)
