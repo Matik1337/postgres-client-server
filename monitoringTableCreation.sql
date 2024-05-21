@@ -20,7 +20,8 @@ CREATE TABLE shift_employee (
     employee_id INT REFERENCES employee(id),
     pos_x real,
     pos_y real,
-    moment timestamp
+    moment timestamp,
+    current_status character varying(50)
 );
 
 CREATE TABLE shift_loader (
@@ -28,9 +29,11 @@ CREATE TABLE shift_loader (
     employee_id INT REFERENCES employee(id),
     loader_id INT REFERENCES loader(id),
     is_loading boolean,
+    ore_count INT,
     pos_x real,
     pos_y real,
-    moment timestamp
+    moment timestamp,
+    current_status character varying(50)
 );
 
 CREATE TABLE shift_tipper (
@@ -41,7 +44,8 @@ CREATE TABLE shift_tipper (
     ore_count INT,
     pos_x real,
     pos_y real,
-    moment timestamp
+    moment timestamp,
+    current_status character varying(50)
 );
 
 insert into tipper (id, machine_name, payload) values (1, 'CAT', 50);

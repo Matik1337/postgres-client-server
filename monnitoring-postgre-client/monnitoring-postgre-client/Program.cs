@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Npgsql;
 using System.Data;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 
@@ -170,9 +171,9 @@ namespace monnitoring_postgre_client
             return query;
         }
 
-        public static Query AddEmployeeShiftRow(int id, int employeeId, float posX, float posY, DateTime moment)
+        public static Query AddEmployeeShiftRow(int id, int employeeId, float posX, float posY, DateTime moment, string status)
         {
-            string sql = "INSERT INTO shift_employee (id, employee_id, pos_x, pos_y, moment) VALUES (@id, @employeeId, @posX, @posY, @moment)";
+            string sql = "INSERT INTO shift_employee (id, employee_id, pos_x, pos_y, moment, current_status) VALUES (@id, @employeeId, @posX, @posY, @moment, @current_status)";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             parameters.Add("@id", id);
@@ -180,33 +181,36 @@ namespace monnitoring_postgre_client
             parameters.Add("@posX", posX);
             parameters.Add("@posY", posY);
             parameters.Add("@moment", moment);
+            parameters.Add("@current_status", status);
 
             Query query = new Query("INSERT", sql, parameters);
 
             return query;
         }
 
-        public static Query AddLoaderShiftRow(int id, int employeeId, int loaderId, bool isLoading, float posX, float posY, DateTime moment)
+        public static Query AddLoaderShiftRow(int id, int employeeId, int loaderId, bool isLoading, int oreCount, float posX, float posY, DateTime moment, string status)
         {
-            string sql = "INSERT INTO shift_loader (id, employee_id, loader_id, is_loading, pos_x, pos_y, moment) VALUES (@id, @employeeId, @loaderId, @isLoading, @posX, @posY, @moment)";
+            string sql = "INSERT INTO shift_loader (id, employee_id, loader_id, is_loading, ore_count, pos_x, pos_y, moment, current_status) VALUES (@id, @employeeId, @loaderId, @isLoading, @ore_count, @posX, @posY, @moment, @current_status)";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             parameters.Add("@id", id);
             parameters.Add("@employeeId", employeeId);
             parameters.Add("@loaderId", loaderId);
             parameters.Add("@isLoading", isLoading);
+            parameters.Add("@ore_count", oreCount);
             parameters.Add("@posX", posX);
             parameters.Add("@posY", posY);
             parameters.Add("@moment", moment);
+            parameters.Add("@current_status", status);
 
             Query query = new Query("INSERT", sql, parameters);
 
             return query;
         }
 
-        public static Query AddTipperShiftRow(int id, int employeeId, int tipperId, string oreType, int oreCount, float posX, float posY, DateTime moment)
+        public static Query AddTipperShiftRow(int id, int employeeId, int tipperId, string oreType, int oreCount, float posX, float posY, DateTime moment, string status)
         {
-            string sql = "INSERT INTO shift_tipper (id, employee_id, tipper_id, ore_type, ore_count, pos_x, pos_y, moment) VALUES (@id, @employeeId, @tipperId, @oreType, @oreCount, @posX, @posY, @moment)";
+            string sql = "INSERT INTO shift_tipper (id, employee_id, tipper_id, ore_type, ore_count, pos_x, pos_y, moment, current_status) VALUES (@id, @employeeId, @tipperId, @oreType, @oreCount, @posX, @posY, @moment, @current_status)";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             parameters.Add("@id", id);
@@ -217,6 +221,7 @@ namespace monnitoring_postgre_client
             parameters.Add("@posX", posX);
             parameters.Add("@posY", posY);
             parameters.Add("@moment", moment);
+            parameters.Add("@current_status", status);
 
             Query query = new Query("INSERT", sql, parameters);
 
